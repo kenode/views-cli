@@ -8,8 +8,8 @@
     "views": "./bin/views.js"
   },
   "scripts": {
-    "test": "mocha --reporter spec --bail --check-leaks tests/",
-    "test-ci": "mocha --reporter spec --check-leaks tests/",
+    "test": "cross-env NODE_ENV=test nyc --report-dir=\"coverage/cli\" mocha --reporter spec --bail --check-leaks tests/",
+    "test-ci": "cross-env NODE_ENV=test nyc --report-dir=\"coverage/cli\" mocha --reporter spec --check-leaks tests/",
     "codecov": "codecov"
   },
   "repository": {
@@ -30,7 +30,9 @@
   },
   "devDependencies": {
     "codecov": "^1.0.1",
+    "cross-env": "^2.0.0",
     "mocha": "^3.0.2",
+    "nyc": "^8.1.0",
     "rimraf": "^2.5.4"
   }
 }

@@ -1,10 +1,11 @@
 # views-cli
 
-[![Version](http://img.shields.io/npm/v/views-cli.svg)](https://www.npmjs.org/package/views-cli)
-[![Build Status](https://travis-ci.org/kenode/views-cli.svg?branch=master)](https://travis-ci.org/kenode/views-cli)
-[![dependencies Status](https://david-dm.org/kenode/views-cli/status.svg)](https://david-dm.org/kenode/views-cli)
-[![Coverage Status](https://img.shields.io/codecov/c/github/kenode/views-cli/master.svg)](https://codecov.io/github/kenode/views-cli)
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coverage-image]][coverage-url]
+[![dependencies Status][dependencies-image]][dependencies-url]
+[![Gratipay][licensed-image]][licensed-url]
 
 一个前端视图工具
 
@@ -53,3 +54,17 @@ $ npm run test
 
 this repo is released under the [MIT
 License](http://www.opensource.org/licenses/MIT).
+
+
+[npm-image]: https://img.shields.io/npm/v/views-cli.svg
+[npm-url]: https://www.npmjs.org/package/views-cli
+[downloads-image]: https://img.shields.io/npm/dm/views-cli.svg
+[downloads-url]: https://npmjs.org/package/views-cli
+[travis-image]: https://travis-ci.org/kenode/views-cli.svg?branch=master
+[travis-url]: https://travis-ci.org/kenode/views-cli
+[coverage-image]: https://img.shields.io/codecov/c/github/kenode/views-cli/master.svg
+[coverage-url]: https://codecov.io/github/kenode/views-cli
+[dependencies-image]: https://david-dm.org/kenode/views-cli/status.svg
+[dependencies-url]: https://david-dm.org/kenode/views-cli
+[licensed-image]: https://img.shields.io/badge/license-MIT-blue.svg
+[licensed-url]: ./LICENSE

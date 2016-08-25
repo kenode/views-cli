@@ -8,17 +8,14 @@ var init = require('./libs/init')
 var version = pkg.version;
 
 program
-  .version(version)
+  .version(version);
 
 program
   .command('init [dir]')
   .description('initialize a front view')
-  .action(function(dir, options){
-    
-    return init(dir)
+  .action( function (dir, options){
+    return init(dir);
   });
-
-//program.parse(process.argv);
 
 // Parse and fallback to help if no args
 if (_.isEmpty(program.parse(process.argv).args) && process.argv.length === 2) {
