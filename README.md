@@ -1,6 +1,10 @@
 # views-cli
 
+[![Version](http://img.shields.io/npm/v/views-cli.svg)](https://www.npmjs.org/package/views-cli)
 [![Build Status](https://travis-ci.org/kenode/views-cli.svg?branch=master)](https://travis-ci.org/kenode/views-cli)
+[![dependencies Status](https://david-dm.org/kenode/views-cli/status.svg)](https://david-dm.org/kenode/views-cli)
+[![Coverage Status](https://img.shields.io/codecov/c/github/kenode/views-cli/master.svg)](https://codecov.io/github/kenode/views-cli)
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 一个前端视图工具
 

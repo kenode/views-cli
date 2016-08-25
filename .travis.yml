@@ -3,3 +3,5 @@ node_js:
   - "4.0.0"
 sudo: false
 script: "npm run-script test-ci"
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
