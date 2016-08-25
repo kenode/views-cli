@@ -16,3 +16,5 @@ function mkdir(dir, _root, callback) {
     return callback(null, { state: 1, path: dir })
   })
 }
+
+// 创建文件
