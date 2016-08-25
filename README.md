@@ -1,5 +1,7 @@
 # views-cli
 
+[![Build Status](https://travis-ci.org/kenode/views-cli.svg?branch=master)](https://travis-ci.org/kenode/views-cli)
+
 一个前端视图工具
 
 ## Installation
