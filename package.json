@@ -9,8 +9,7 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc --report-dir=\"coverage/cli\" mocha --reporter spec --bail --check-leaks tests/",
-    "test-ci": "cross-env NODE_ENV=test nyc --report-dir=\"coverage/cli\" mocha --reporter spec --check-leaks tests/",
-    "codecov": "codecov -t :277db9cf-90e0-4983-bab9-9f43d683107c"
+    "test-ci": "cross-env NODE_ENV=test nyc --report-dir=\"coverage/cli\" mocha --reporter spec --check-leaks tests/"
   },
   "repository": {
     "type": "git",
@@ -29,7 +28,6 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
-    "codecov": "^1.0.1",
     "cross-env": "^2.0.0",
     "mocha": "^3.0.2",
     "nyc": "^8.1.0",

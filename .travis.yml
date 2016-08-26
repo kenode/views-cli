@@ -7,5 +7,3 @@ node_js:
 npm: "3"
 sudo: false
 script: "npm run-script test-ci"
-after_success: 
-  - codecov -t :277db9cf-90e0-4983-bab9-9f43d683107c
