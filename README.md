@@ -19,12 +19,12 @@ npm install -g views-cli
 
 Create A Project
 ```bash
-$ views init myProject
+$ views init app-name
 ```
 
 Initialize A Project
 ```bash
-$ cd myProject && views init
+$ cd app-name && views init
 ```
 
 Help
