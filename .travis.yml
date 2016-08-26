@@ -8,5 +8,5 @@ npm:
   - "3"
 sudo: false
 script: "npm run-script test-ci"
-after_success: npm run codecov
-token: "277db9cf-90e0-4983-bab9-9f43d683107c"
+after_success: 
+  - bash <(curl -s https://codecov.io/bash)
