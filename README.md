@@ -3,7 +3,6 @@
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
-[![Coverage Status][coverage-image]][coverage-url]
 [![dependencies Status][dependencies-image]][dependencies-url]
 [![Gratipay][licensed-image]][licensed-url]
 
@@ -62,8 +61,6 @@ License](http://www.opensource.org/licenses/MIT).
 [downloads-url]: https://npmjs.org/package/views-cli
 [travis-image]: https://travis-ci.org/kenode/views-cli.svg?branch=master
 [travis-url]: https://travis-ci.org/kenode/views-cli
-[coverage-image]: https://img.shields.io/codecov/c/github/kenode/views-cli/master.svg
-[coverage-url]: https://codecov.io/github/kenode/views-cli
 [dependencies-image]: https://david-dm.org/kenode/views-cli/status.svg
 [dependencies-url]: https://david-dm.org/kenode/views-cli
 [licensed-image]: https://img.shields.io/badge/license-MIT-blue.svg
