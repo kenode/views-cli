@@ -7,6 +7,7 @@ var Tools = require('./tools');
 var InitProxy = require('./initproxy')
 var fs = require('fs');
 var path = require('path');
+var _ = require('lodash');
 
 var _root;
 
@@ -48,6 +49,14 @@ module.exports = function (dir) {
       console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
       copy_file('sass/base.scss', _dir + '/assets/sass/libs/base.scss');
       copy_file('sass/index.scss', _dir + '/assets/sass/index.scss');
+      return InitProxy.mkdirAsync(_dir + '/bin', false);
+    })
+    .then( function (doc) {
+      if (doc.state === 0) {
+        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
+      }
+      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      copy_file('bin/add.js', _dir + '/bin/add.js');
       return InitProxy.mkdirAsync(_dir + '/jsondata', false);
     })
     .then( function (doc) {
@@ -55,7 +64,17 @@ module.exports = function (dir) {
         Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
       }
       console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
-      copy_file('jsondata/index.json', _dir + '/jsondata/index.json');
+      copy_json('jsondata/index.json', _dir + '/jsondata/index.json', {
+        content: fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf-8')
+      });
+      return InitProxy.mkdirAsync(_dir + '/libs', false);
+    })
+    .then( function (doc) {
+      if (doc.state === 0) {
+        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
+      }
+      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      copy_file('libs/tools.js', _dir + '/libs/tools.js');
       return InitProxy.mkdirAsync(_dir + '/src', false);
     })
     .then( function (doc) {
@@ -71,6 +90,14 @@ module.exports = function (dir) {
       }
       console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
       copy_file('src/index.js', _dir + '/src/index.js');
+      return InitProxy.mkdirAsync(_dir + '/tests', false);
+    })
+    .then( function (doc) {
+      if (doc.state === 0) {
+        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
+      }
+      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      copy_file('test.js', _dir + '/tests/test.js');
       return InitProxy.mkdirAsync(_dir + '/views', false);
     })
     .then( function (doc) {
@@ -94,20 +121,11 @@ module.exports = function (dir) {
       console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
       copy_file('views/layouts/base.html', _dir + '/views/layouts/base.html');
       copy_file('views/index.html', _dir + '/views/index.html');
-      return InitProxy.mkdirAsync(_dir + '/bin', false);
-    })
-    .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
-      copy_file('bin/add.js', _dir + '/bin/add.js');
     })
     .then( function () {
       copy_file('.babelrc', _dir + '/.babelrc');
       copy_file('config.js', _dir + '/config.js');
       copy_file('gulpfile.babel.js', _dir + '/gulpfile.babel.js');
-      copy_file('webpack.config.js', _dir + '/webpack.config.js');
       var pkg = {
         name: /[^\\|\/]+$/.exec(_dir)[0],
         version: '1.0.0',
@@ -120,7 +138,8 @@ module.exports = function (dir) {
         scripts: {
           'build': 'gulp build',
           'dev': 'gulp dev',
-          'add:page': 'babel-node bin/add'
+          'add:page': 'babel-node bin/add',
+          'test': 'cross-env NODE_ENV=test nyc --report-dir=\"coverage/cli\" mocha --reporter spec --bail --check-leaks tests/ --compilers js:babel-core/register'
         },
         author: 'thondery <thondery@163.com>',
         license: 'MIT'
@@ -132,6 +151,8 @@ module.exports = function (dir) {
         'babel-plugin-transform-runtime': '^6.12.0',
         'babel-preset-es2015': '^6.13.2',
         'babel-preset-stage-0': '^6.5.0',
+        'chai': '^3.5.0',
+        'cross-env': '^2.0.0',
         'css-loader': '^0.23.1',
         'del': '^2.2.2',
         'extract-text-webpack-plugin': '^1.0.1',
@@ -155,8 +176,12 @@ module.exports = function (dir) {
         'json-loader': '^0.5.4',
         'less': '^2.7.1',
         'less-loader': '^2.2.3',
+        'markdown-it': '^7.0.1',
+        'mocha': '^3.0.2',
+        'nyc': '^8.1.0',
         'run-sequence': '^1.2.2',
         'sass-loader': '^4.0.0',
+        'shelljs': '^0.7.4',
         'url-loader': '^0.5.7',
         'webpack': '^1.13.1'
       }
@@ -167,6 +192,7 @@ module.exports = function (dir) {
         'lodash': '^4.15.0'
       }
       write(_dir + '/package.json', JSON.stringify(pkg, null, 2));
+      copy_file('webpack.config.js', _dir + '/webpack.config.js');
     })
     .then( function () {
       console.log();
@@ -189,9 +215,16 @@ module.exports = function (dir) {
   
 }
 
-function copy_file(from, to) {
+function copy_file (from, to) {
   from = path.join(__dirname, '../tpl', from);
   write(to, fs.readFileSync(from, 'utf-8'));
+}
+
+function copy_json (from, to, opts) {
+  from = path.join(__dirname, '../tpl', from);
+  var json = JSON.parse(fs.readFileSync(from, 'utf-8'));
+  //console.log(_.assign(json, opts));
+  write(to, JSON.stringify(_.assign(json, opts), null, 2));
 }
 
 function write (path, str, mode) {

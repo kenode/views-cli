@@ -48,7 +48,7 @@ describe('views', function () {
         if (err) return done(err);
         files = parseCreatedFiles(stdout, dir);
         output = stdout;
-        assert.equal(files.length, 23);
+        assert.equal(files.length, 27);
         done();
       });
     });
@@ -58,7 +58,7 @@ describe('views', function () {
         if (err) return done(err);
         files = parseCreatedFiles(stdout, dir);
         output = stdout;
-        assert.equal(files.length, 24);
+        assert.equal(files.length, 28);
         done();
       });
     });

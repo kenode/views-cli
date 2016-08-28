@@ -1,9 +1,12 @@
 language: node_js
 node_js:
-  - "stable"
-  - "4"
-  - "5"
-  - "6"
-npm: "3"
+  - stable
+  - 4
+  - 5
+  - 6
+before_script:
+  - npm i -g npm@stable
 sudo: false
-script: "npm run-script test-ci"
+script: 
+  - npm run-script test-ci
+  - codecov

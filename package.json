@@ -1,6 +1,6 @@
 {
   "name": "views-cli",
-  "version": "0.0.1-rc3",
+  "version": "0.0.1-rc4",
   "description": "一个前端视图工具",
   "main": "index.js",
   "preferGlobal": true,
@@ -28,6 +28,7 @@
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
+    "codecov": "^1.0.1",
     "cross-env": "^2.0.0",
     "mocha": "^3.0.2",
     "nyc": "^8.1.0",

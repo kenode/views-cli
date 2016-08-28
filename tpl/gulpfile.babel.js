@@ -12,6 +12,7 @@ import { readFileSync } from 'fs'
 
 import config from './config'
 import compile from './webpack.config'
+import Tools from './libs/tools'
 
 const $ = gulpLoadPlugins()
 const Run = sequence.use(gulp)
@@ -117,5 +118,5 @@ gulp.task('watch', () => {
 const getData = file => {
   let jsonData = path.basename(file.path).replace(/\.(html|htm)$/i, '.json')
   let data = JSON.parse(readFileSync(paths.data(jsonData), 'utf-8') || '{}')
-  return data
+  return Object.assign(data, Tools)
 }
