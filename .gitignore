@@ -30,6 +30,7 @@ build/Release
 node_modules
 jspm_packages
 test
+coverage.lcov
 
 # Optional npm cache directory
 .npm

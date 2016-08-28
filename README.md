@@ -1,13 +1,13 @@
 # views-cli
 
+一个前端视图工具
+
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
 [![Codecov Status][codecov-image]][codecov-url]
 [![dependencies Status][dependencies-image]][dependencies-url]
 [![Gratipay][licensed-image]][licensed-url]
-
-一个前端视图工具
 
 ## Installation
 With npm do:
@@ -17,17 +17,6 @@ npm install -g views-cli
 
 ## Usage
 
-Create A Project
-```bash
-$ views init app-name
-```
-
-Initialize A Project
-```bash
-$ cd app-name && views init
-```
-
-Help
 ```bash
 $ views -h
 
@@ -42,6 +31,16 @@ $ views -h
                                                                                                                                 
     -h, --help     output usage information                                                                                     
     -V, --version  output the version number
+```
+
+Create A Project
+```bash
+$ views init app-name
+```
+
+Initialize A Project
+```bash
+$ cd app-name && views init
 ```
 
 ## Test
