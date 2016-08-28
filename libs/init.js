@@ -22,103 +22,64 @@ module.exports = function (dir) {
       return InitProxy.mkdirAsync(_dir + '/assets', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       return InitProxy.mkdirAsync(_dir + '/assets/img', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       return InitProxy.mkdirAsync(_dir + '/assets/sass', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       return InitProxy.mkdirAsync(_dir + '/assets/sass/libs', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       copy_file('sass/base.scss', _dir + '/assets/sass/libs/base.scss');
       copy_file('sass/index.scss', _dir + '/assets/sass/index.scss');
       return InitProxy.mkdirAsync(_dir + '/bin', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       copy_file('bin/add.js', _dir + '/bin/add.js');
       return InitProxy.mkdirAsync(_dir + '/jsondata', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       copy_json('jsondata/index.json', _dir + '/jsondata/index.json', {
         content: fs.readFileSync(path.join(__dirname, '..', 'README.md'), 'utf-8')
       });
       return InitProxy.mkdirAsync(_dir + '/libs', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       copy_file('libs/tools.js', _dir + '/libs/tools.js');
       return InitProxy.mkdirAsync(_dir + '/src', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       return InitProxy.mkdirAsync(_dir + '/src/components', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       copy_file('src/index.js', _dir + '/src/index.js');
       return InitProxy.mkdirAsync(_dir + '/tests', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       copy_file('test.js', _dir + '/tests/test.js');
       return InitProxy.mkdirAsync(_dir + '/views', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       return InitProxy.mkdirAsync(_dir + '/views/components', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       return InitProxy.mkdirAsync(_dir + '/views/layouts', false);
     })
     .then( function (doc) {
-      if (doc.state === 0) {
-        Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
-      }
-      console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
+      show_log(doc);
       copy_file('views/layouts/base.html', _dir + '/views/layouts/base.html');
       copy_file('views/index.html', _dir + '/views/index.html');
     })
@@ -216,14 +177,13 @@ module.exports = function (dir) {
 }
 
 function copy_file (from, to) {
-  from = path.join(__dirname, '../tpl', from);
+  from = path.join(__dirname, '../tpl/default', from);
   write(to, fs.readFileSync(from, 'utf-8'));
 }
 
 function copy_json (from, to, opts) {
-  from = path.join(__dirname, '../tpl', from);
+  from = path.join(__dirname, '../tpl/default', from);
   var json = JSON.parse(fs.readFileSync(from, 'utf-8'));
-  //console.log(_.assign(json, opts));
   write(to, JSON.stringify(_.assign(json, opts), null, 2));
 }
 
@@ -232,4 +192,11 @@ function write (path, str, mode) {
     mode: mode || '0666'
   });
   console.log('   create : ', Tools.showPath(path, _root), '=> Successful')
+}
+
+function show_log (doc) {
+  if (doc.state === 0) {
+    Tools.error(1001, util.format('   create : ', Tools.showPath(doc.path, _root), '=> Failure'));
+  }
+  console.log('   create : ', Tools.showPath(doc.path, _root), '=> Successful');
 }
