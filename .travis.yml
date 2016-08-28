@@ -7,4 +7,4 @@ node_js:
 sudo: false
 script: 
   - npm run-script test-ci
-  - codecov
+  - npm run report-coverage
